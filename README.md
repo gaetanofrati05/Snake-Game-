@@ -1,2 +1,3 @@
 # Snake-Game-
 This project is written in Java and concerns snake game. 
+I divided the project into four classes. The first class is GamePanel this class create the panel of the game and create the loop to start the game. The size of tile and the others stuffs are standarsided if you want you can change it and adapt to yuor panel. The second is KeyListener for listen the key pressed. The third class is Snake class and have the methods for move and grow the snak.The fourth generate random tiles in the panel. It is a simple project shortlt I wil post the code. If you want to help me you can do that and I apprecciate that you're welcome. 
