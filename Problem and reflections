@@ -2,3 +2,5 @@ I have a problem the game compile and all it works but when is running and I pre
 Someone can help me and tell me if the game works? I will appreciate, I'm a dud with the graphics interfaces 
 so if the game is not attractive I know well, is the first time I made a game and with the grapghics interfaces 
 I asked help to AI I'll be honest but with rest I made myself. Anyway you can help me and I will so thankful. 
+I founded the problem it was in the loop game I reduced the snake speed and when the game ran there were
+negative values in the game loop 
