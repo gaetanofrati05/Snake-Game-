@@ -13,7 +13,7 @@ public class GamePanel extends JPanel implements Runnable{
 	private final int maxScreenRow=12;
 	private final int screenWidth=tileSize*maxScreenCol; //768 pixel
 	private final int screenHeight=tileSize*maxScreenRow; // 576 pixel 
-	private int FPS=60;
+	private final int SNAKE_SPEED=1;
 	//Components of the game 
 	  private Thread gameThread;
 	  private final KeyHandler key = new KeyHandler();
@@ -33,25 +33,30 @@ public class GamePanel extends JPanel implements Runnable{
 		gameThread.start();
 	}
 	@Override 
-	public void run(){
-		double drawInterval=1000000000/FPS;
-		double nextDrawTime= System.nanoTime()+drawInterval;
-		while(gameThread!=null){
-			
-			if(!gameOver){
-				//UPDATE: update the information on the screen 
-				update();
-			}
-			//DRAW: draw the screen with the updated information 
-			repaint();
-			try{
-			double remaningTime= nextDrawTime-System.nanoTime();
-			Thread.sleep((long)remaningTime);
-			}catch(InterruptedException e){
-				e.printStackTrace();
-			}
-		}
-	}
+	public void run() {
+        // Intervallo in ms tra una mossa e l'altra
+        long interval = 1000 / SNAKE_SPEED;
+        long lastTime = System.currentTimeMillis();
+
+        while (gameThread != null) {
+            long now = System.currentTimeMillis();
+
+            if (now - lastTime >= interval) {
+                if (!gameOver) {
+                    update();
+                }
+                repaint();
+                lastTime = now;
+            }
+
+            // Piccola pausa per non consumare CPU al 100%
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 	private void update() {
         Direction dir = key.getDirection();
 
@@ -114,4 +119,5 @@ public class GamePanel extends JPanel implements Runnable{
 	public int getTileSize()    { return tileSize; }
     public int getScreenWidth() { return screenWidth; }
     public int getScreenHeight(){ return screenHeight; }
+
 }
